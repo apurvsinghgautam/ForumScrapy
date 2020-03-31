@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% set pg=page.decode('base64') | int %}
+	<form class="form-inline my-2 my-lg-0" action="{{ url_for('search_threads') }}" method="POST">
+
+      <input class="form-control mr-sm-2" placeholder="Search" type="text" name="search" required="required">
+      <select class="form-control" id="SelectGroup" name="group">
+      	<option value="">Select Group</option>
+      	<option value="Main Discussions">Main Discussions</option>
+      	<option value="Exploits and Vulnerabilities">Exploits and Vulnerabilities</option>
+      	<option value="Hacking & Security Tutorials">Hacking & Security Tutorials</option>
+      	<option value="Beginners Hacking tutorials">Beginners Hacking tutorials</option>
+      	<option value="Web Application Security & Hacking">Web Application Security & Hacking</option>
+      	<option value="Tools & Equipment">Tools & Equipment</option>
+      	<option value="Hacking Showoff">Hacking Showoff</option>
+      	<option value="How-To Tutorials">How-To Tutorials</option>
+      	<option value="Socks Proxy">Socks Proxy</option>
+      	<option value="HTTP Proxy">HTTP Proxy</option>
+      	<option value="Proxy Programs">Proxy Programs</option>
+      	<option value="Cracked Programs">Cracked Programs</option>
+      	<option value="Youtube, Twitter, and FB bots">Youtube, Twitter, and FB bots</option>
+      	<option value="Simple Money Making Methods">Simple Money Making Methods</option>
+      	<option value="Black Hat Money Making">Black Hat Money Making</option>
+      	<option value="Links Heaven">Links Heaven</option>
+      </select>
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+
+    </form>
+	<div style="float:right;">
+		<ul class="pagination">
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(pg-1)) }}">&laquo;</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(1)) }}">1</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(2)) }}">2</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(3)) }}">3</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(4)) }}">4</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(5)) }}">5</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(pg+1)) }}">&raquo;</a>
+			</li>		
+		</ul>
+	</div>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">Title</th>
+				<th scope="col">Author</th>
+				<th scope="col">Date</th>
+				<th scope="col">URL</th>
+				<th scope="col">Forum Group</th>
+				<th scope="col">Forum URL</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% if not lthread['hits']['hits'] %}	
+			<tr class="table-light">
+				<td colspan="7">No Threads Found</td>
+			</tr>
+		{% else %}	
+			{% for thread in lthread['hits']['hits'] %}
+			<tr class="table-dark">
+                <td><a href="{{ url_for('get_data', id=thread['_source']['thread_url'].split('/')[5], group=thread['_source']['thread_url'].split('/')[4]) }}">{{ thread['_source']['thread_title'] }}</a></td>
+				<td>{{ thread['_source']['thread_author'] }}</td>
+				<td>{{ thread['_source']['thread_date'] }}</td>
+				<td>{{ thread['_source']['thread_url'] }}</td>
+				<td>{{ thread['_source']['forum_group'] }}</td>
+				<td>{{ thread['_source']['forum_url'] }}</td>
+			</tr>
+			{% endfor %}
+		{% endif %}
+		</tbody>
+	</table>
+	<div style="float:right;">
+		<ul class="pagination">
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(pg-1)) }}">&laquo;</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(1)) }}">1</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(2)) }}">2</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(3)) }}">3</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(4)) }}">4</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(5)) }}">5</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_latest_threads',page=encode(pg+1)) }}">&raquo;</a>
+			</li>		
+		</ul>
+	</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% set pg=page.decode('base64') | int %}
+    <div style="float:right;">
+		<ul class="pagination">
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(pg-1)) }}">&laquo;</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(1)) }}">1</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(2)) }}">2</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(3)) }}">3</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(4)) }}">4</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(5)) }}">5</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(pg+1)) }}">&raquo;</a>
+			</li>
+		</ul>
+	</div>
+    <table class="table table-hover">
+		<thead class="my-class">
+			<tr>
+				<th scope="col">Member Name</th>
+				<th scope="col">Member URL</th>
+				<th scope="col">Join Date</th>
+                <th scope="col">Contact Info</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% if not memlist['hits']['hits'] %}
+		<tr class="table-light">
+			<td colspan="4">No Members Found</td>
+		</tr>
+		{% else %}
+			{% for member in memlist['hits']['hits'] %}
+			<tr class="table-dark">
+                {% set info=member['_source']['contact_info'].replace('\n', '<br>') %}
+				<td>{{ member['_source']['member_name'] }}</td>
+				<td>{{ member['_source']['member_url'] }}</td>
+                <td>{{ member['_source']['join_date'] }}</td>
+                {% autoescape false %}
+                <td>{{ info }}</td>
+                {% endautoescape %}
+			</tr>
+			{% endfor %}
+		{% endif %}
+		</tbody>
+	</table>
+    <div style="float:right;">
+		<ul class="pagination">
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(pg-1)) }}">&laquo;</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(1)) }}">1</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(2)) }}">2</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(3)) }}">3</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(4)) }}">4</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(5)) }}">5</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="{{ url_for('get_members_list',page=encode(pg+1)) }}">&raquo;</a>
+			</li>
+		</ul>
+	</div>
+{% endblock %}

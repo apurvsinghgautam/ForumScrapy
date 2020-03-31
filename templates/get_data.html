@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">Thread Data</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% if not lthread['hits']['hits'] %}
+			<tr class="table-light">
+				<td colspan="7">No Threads Found</td>
+			</tr>
+		{% else %}
+			{% for thread in lthread['hits']['hits'] %}
+			<tr class="table-dark">
+				<td>{{ thread['_source']['thread_post'] }}</td>
+			</tr>
+			{% endfor %}
+		{% endif %}
+		</tbody>
+	</table>
+{% endblock %}

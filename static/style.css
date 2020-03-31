@@ -1,0 +1,48 @@
+table{
+	table-layout: fixed;
+	width: 100%;
+	overflow: hidden;
+	word-wrap: break-word;
+}
+
+
+thead th:nth-child(1){
+	width: 15% ;
+}
+
+thead th:nth-child(2){
+	width: 7% ;
+}
+
+thead th:nth-child(3){
+	width: 10% ;
+}
+
+thead th:nth-child(4){
+	width: 28% ;
+}
+
+thead th:nth-child(5){
+	width: 15% ;
+}
+
+thead th:nth-child(6){
+	width: 25% ;
+}
+
+
+.my-class th:nth-child(1){
+	width: 15%;
+}
+
+.my-class th:nth-child(2){
+	width: 35%;
+}
+
+.my-class th:nth-child(3){
+	width: 10%;
+}
+
+.my-class th:nth-child(4){
+	width: 40%;
+}
