@@ -17,8 +17,10 @@ This is a Web Scraping application built on Flask. This web application scrapes 
 
 ## Usage
 
-- Enter your Bitshacking forum username and password in the code
-- Emter the Flask secret key in the code
+- Enter any Socks proxy in the code 
+- Enter your Bitshacking forum username and password (md5) in the code
+- Refresh Cookies if needed
+- Enter the Flask secret key in the code
 - Run the `ForumScrapy.py` file
 - Open `127.0.0.1:5000` in any browser
 - Open `127.0.0.1:5601` in any browser to see the Kibana dashboard
