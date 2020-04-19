@@ -1,6 +1,6 @@
 # ForumScrapy
 
-This is a Web Scraping application built on Flask. This web application scrapes forum posts from the Bitshacking hack forum. Kibana is also used for visualizing data from the Elasticsearch database. It uses Elasticsearch as the database to store the forum data and Kibana is used for visualizing data from Elasticsearch.
+This is a Web Scraping application built on Flask. This web application scrapes forum posts from the Bitshacking hack forum. It uses Elasticsearch as the database to store the forum data and Kibana is used for visualizing data from Elasticsearch. Kibana is also used for visualizing data from the Elasticsearch database.
 
 ![ForumScrapy Homepage](https://user-images.githubusercontent.com/20106707/78077966-5a35d000-7377-11ea-8eac-c39b8c8b12f4.png)
 
